@@ -11,7 +11,8 @@
     <ul>
         {% for clients in clientes %}
 
-            <li><a href="{% url 'person_update' person.id%}"></a> {{ clients.first_name }}</li>
+            <li><a href="{% url 'nick_up' clients.id%}">{{ clients.first_name }}</a> </li>
+            <li><a href="{% url 'nick_del' clients.id%}"><strong>Deletar</strong></a> </li>
 
         {% endfor  %}
     </ul>

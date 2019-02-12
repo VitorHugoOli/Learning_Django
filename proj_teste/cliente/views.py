@@ -27,3 +27,13 @@ def person_up(request,id):
         return redirect('nick_list')
     return render(request, 'clients_form.html',{'form':form})
 
+def person_del(request,id):
+    client = get_object_or_404(Person, pk=id)
+    form = ClientsForm(request.POST or None, request.FILES or None, instance=client)
+
+    if request.method == 'POST':
+        client.delete()
+        return redirect('nick_list')
+
+    return render(request, 'clients_del.html',{'form':form, 'client': client})
+
