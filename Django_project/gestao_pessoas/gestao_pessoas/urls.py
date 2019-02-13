@@ -18,12 +18,13 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from cliente import urls as clients_urls
+from home import urls as home_urls
 from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/', auth_views.auth_login ,name='login'),
-    path('login/', auth_views.auth_logout ,name='logout'),
-    path('person/', include(clients_urls))
+    path('login/', auth_views.LoginView.as_view() ,name='login'),
+    path('person/', include(clients_urls)),
+    path('', include(home_urls))
 ] + static(settings.MEDIA_ROOT, document_root=settings.MEDIA_ROOT)
